@@ -1,0 +1,68 @@
+.ui.container {
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body {
+    background: #95a5a6;
+}
+
+#model {
+    display: none;
+}
+
+.event {
+    height: 100px;
+    width: 700px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    box-shadow: 0 1px 30px 0 rgba(0,0,0,.1);
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.event .date {
+    background-color: #2980b9;
+    width: 150px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.event .date .day {
+    font-size: 1em;
+    color: white;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.event .date .time {
+    font-size: 2em;
+    color: white;
+}
+
+.event .channel {
+    background-color: #3498db;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    flex: 1;
+}
+
+.event .channel .logo {
+    margin-right: 10px;
+    height: 80px;
+    width: auto;
+}
+
+.event .channel .text {
+    font-size: 2.5em;
+    color: white;
+}
