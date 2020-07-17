@@ -1,5 +1,10 @@
 var program = {
-    "07/17/2020 22:01": "tf1",
+    "07/17/2020 23:15": "tf1",
+    "07/18/2020 08:55": "c8",
+    "07/18/2020 12:40": "w9",
+    "07/18/2020 17:55": "cstar",
+    "07/18/2020 18:30": "c8",
+    "07/18/2020 21:00": "france2",
 }
 
 var channels = {
@@ -17,6 +22,21 @@ var channels = {
         "name": "C8",
         "logo": "https://upload.wikimedia.org/wikipedia/fr/thumb/7/7d/Logo_C8.svg/1200px-Logo_C8.svg.png",
         "epg": "445"
+    },
+    "w9": {
+        "name": "W9",
+        "logo": "https://upload.wikimedia.org/wikipedia/fr/thumb/5/56/Logo_W9_2018.svg/1200px-Logo_W9_2018.svg.png",
+        "epg": "119"
+    },
+    "cstar": {
+        "name": "CSTAR",
+        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Cstar-logo.jpg/1200px-Cstar-logo.jpg",
+        "epg": "458"
+    },
+    "france2": {
+        "name": "France 2",
+        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/France_2_2018.svg/1181px-France_2_2018.svg.png",
+        "epg": "4"
     },
 }
 
@@ -85,4 +105,10 @@ $(function() {
 
     every();
     setInterval(every, 1000);
+
+    $("body").on("click", ".event", function() {
+        var event = $(this);
+        const channel = event.attr("channel");
+        call(channels[channel]);
+    });
 });
