@@ -1,10 +1,12 @@
 var program = {
-    "07/24/2020 21:23": "tf1",
+    "07/24/2020 22:20": "play",
+    "07/25/2020 00:01": "c8",
+    "07/25/2020 03:00": "tfx",
     "07/25/2020 08:55": "c8",
     "07/25/2020 12:40": "w9",
     "07/25/2020 17:55": "cstar",
     "07/25/2020 18:30": "c8",
-    "07/25/2020 21:00": "france2",
+    "07/25/2020 21:00": "tf1",
 }
 
 var channels = {
@@ -37,6 +39,16 @@ var channels = {
         "name": "France 2",
         "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/France_2_2018.svg/1181px-France_2_2018.svg.png",
         "epg": "4"
+    },
+    "tfx": {
+        "name": "TFX",
+        "logo": "https://upload.wikimedia.org/wikipedia/fr/thumb/8/83/TFX_logo_2018.svg/1200px-TFX_logo_2018.svg.png",
+        "epg": "446"
+    },
+    "play": {
+        "name": "PLAY",
+        "logo": "https://www.vippng.com/png/full/205-2058917_play-icon-ville-de-saint-etienne.png",
+        "button": "164"
     },
 }
 
@@ -72,7 +84,6 @@ function every() {
         const channel = event.attr("channel");
         
         var time = ts - now;
-        console.log(time);
         if (time < 1) {
             call(channels[channel]);
             event.transition('drop', function() {
@@ -89,6 +100,9 @@ function every() {
 
 function get_channel() {
     $.get("http://192.168.1.10:8080/remoteControl/cmd?operation=10").then(response => {
+        if (response.result.data.osdContext == "netflix") {
+            $(".main .logo").attr("src", "https://upload.wikimedia.org/wikipedia/commons/0/0f/Logo_Netflix.png");
+        }
         var current_channel = response.result.data.playedMediaId.toString();
         for (channel in channels) {
             if (channels[channel].epg == current_channel) {
@@ -96,14 +110,17 @@ function get_channel() {
                 $(".main .logo").attr("src", channels[channel].logo);
             }
         }
-    })
+    });
 }
 
 function call(channel) {
+    if (channel.button != undefined) {
+        $.get("http://192.168.1.10:8080/remoteControl/cmd?operation=01&key=" + channel.button + "&mode=0");
+        return;
+    }
     var epg_id = "*".repeat(10 - channel.epg.length) + channel.epg;
-    console.log(channel, epg_id);
     $.get("http://192.168.1.10:8080/remoteControl/cmd?operation=09&epg_id=" + epg_id + "&uui=1").then(r => {
-        get_channel();
+        $(".main .logo").attr("src", channel.logo);
     });
 }
 
