@@ -6,7 +6,27 @@
 }
 
 body {
-    background: #95a5a6;
+    background: black;
+}
+
+.main {
+    background-color: #34495e;
+    padding: 50px;
+    box-shadow: 0px 10px 20px 0px #0000005c;
+}
+
+.main .logo {
+    display: block;
+    height: 100px;
+    width: auto;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.main .text {
+    font-size: 7em;
+    color: white;
+    text-align: center;
 }
 
 #model {
@@ -20,12 +40,17 @@ body {
     flex-direction: row;
     justify-content: center;
     box-shadow: 0 1px 30px 0 rgba(0,0,0,.1);
-    margin-bottom: 10px;
-    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0px 10px 20px 0px #0000005c;
+}
+
+.ui.container > .test.event:first-child {
+    transform: scale(1.5);
+    margin-bottom: 40px;
 }
 
 .event .date {
-    background-color: #2980b9;
+    background-color: #2c3e50;
     width: 150px;
 
     display: flex;
@@ -47,7 +72,7 @@ body {
 }
 
 .event .channel {
-    background-color: #3498db;
+    background-color: #34495e;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

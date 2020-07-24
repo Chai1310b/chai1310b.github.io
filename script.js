@@ -1,10 +1,10 @@
 var program = {
-    "07/17/2020 23:15": "tf1",
-    "07/18/2020 08:55": "c8",
-    "07/18/2020 12:40": "w9",
-    "07/18/2020 17:55": "cstar",
-    "07/18/2020 18:30": "c8",
-    "07/18/2020 21:00": "france2",
+    "07/24/2020 21:23": "tf1",
+    "07/25/2020 08:55": "c8",
+    "07/25/2020 12:40": "w9",
+    "07/25/2020 17:55": "cstar",
+    "07/25/2020 18:30": "c8",
+    "07/25/2020 21:00": "france2",
 }
 
 var channels = {
@@ -72,20 +72,39 @@ function every() {
         const channel = event.attr("channel");
         
         var time = ts - now;
-        if (time <= 0) {
+        console.log(time);
+        if (time < 1) {
             call(channels[channel]);
             event.transition('drop', function() {
                 event.remove();
             });
         }
         event.find(".text").text(duration(time));
+
+        if (idx == 0) {
+            $(".main .text").text(duration(time));
+        }
     });
+}
+
+function get_channel() {
+    $.get("http://192.168.1.10:8080/remoteControl/cmd?operation=10").then(response => {
+        var current_channel = response.result.data.playedMediaId.toString();
+        for (channel in channels) {
+            if (channels[channel].epg == current_channel) {
+                console.log(current_channel);
+                $(".main .logo").attr("src", channels[channel].logo);
+            }
+        }
+    })
 }
 
 function call(channel) {
     var epg_id = "*".repeat(10 - channel.epg.length) + channel.epg;
     console.log(channel, epg_id);
-    $.get("http://192.168.1.10:8080/remoteControl/cmd?operation=09&epg_id=" + epg_id + "&uui=1");
+    $.get("http://192.168.1.10:8080/remoteControl/cmd?operation=09&epg_id=" + epg_id + "&uui=1").then(r => {
+        get_channel();
+    });
 }
 
 var duration = (secs) => {
@@ -102,6 +121,8 @@ var duration = (secs) => {
 
 $(function() {
     init();
+
+    get_channel();
 
     every();
     setInterval(every, 1000);
