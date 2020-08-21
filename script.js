@@ -1,12 +1,10 @@
 var program = {
-    "07/24/2020 22:20": "play",
-    "07/25/2020 00:01": "c8",
-    "07/25/2020 03:00": "tfx",
-    "07/25/2020 08:55": "c8",
-    "07/25/2020 12:40": "w9",
-    "07/25/2020 17:55": "cstar",
-    "07/25/2020 18:30": "c8",
-    "07/25/2020 21:00": "tf1",
+    "08/21/2020 23:30": "tf1",
+    "08/22/2020 09:45": "c8",
+    "08/22/2020 13:40": "tf1sf",
+    "08/22/2020 14:30": "w9",
+    "08/22/2020 18:00": "cstar",
+    "08/22/2020 18:40": "tmc",
 }
 
 var channels = {
@@ -44,6 +42,16 @@ var channels = {
         "name": "TFX",
         "logo": "https://upload.wikimedia.org/wikipedia/fr/thumb/8/83/TFX_logo_2018.svg/1200px-TFX_logo_2018.svg.png",
         "epg": "446"
+    },
+    "tmc": {
+        "name": "TMC",
+        "logo": "https://upload.wikimedia.org/wikipedia/fr/thumb/a/a8/TMC_logo_2016.svg/1200px-TMC_logo_2016.svg.png",
+        "epg": "195"
+    },
+    "tf1sf": {
+        "name": "TF1 Series Film",
+        "logo": "https://upload.wikimedia.org/wikipedia/fr/thumb/5/5f/TF1_S%C3%A9ries_Films_logo_2018.svg/1280px-TF1_S%C3%A9ries_Films_logo_2018.svg.png",
+        "epg": "1404"
     },
     "play": {
         "name": "PLAY",
@@ -142,7 +150,7 @@ $(function() {
     get_channel();
 
     every();
-    setInterval(every, 1000);
+    setInterval(every, 500);
 
     $("body").on("click", ".event", function() {
         var event = $(this);
