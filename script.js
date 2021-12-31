@@ -16,7 +16,7 @@ var channels = {
     },
     "c8": {
         "name": "C8",
-        "logo": "https://upload.wikimedia.org/wikipedia/fr/thumb/7/7d/Logo_C8.svg/1200px-Logo_C8.svg.png",
+        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Logo_C8.svg/2560px-Logo_C8.svg.png",
         "epg": "445"
     },
     "w9": {
